@@ -5,7 +5,7 @@
 
 class Square:
     """An empty class called Square"""
-    def __init__(self, size=0, position=(0,0)):
+    def __init__(self, size=0, position=(0, 0)):
         """Initializes Squares.
         Args:
             size (int): size of the latest square.
