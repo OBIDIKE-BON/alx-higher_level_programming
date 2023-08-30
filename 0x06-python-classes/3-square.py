@@ -20,6 +20,6 @@ class Square:
 
     def area(self):
         """Retrieves the area of a square.
-            Return: the area of a square.
+        Return: the area of a square.
         """
         return(self.__size)
