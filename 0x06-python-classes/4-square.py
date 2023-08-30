@@ -24,3 +24,23 @@ class Square:
             the area of a square.
         """
         return (self.__size**2)
+
+    @property
+    def size(self):
+        """Sets the area of a square."""
+        return (self.__size)
+
+    @size.setter
+    def size(self, value):
+        """Sets the area of a square.
+        Args:
+            value
+        """
+
+        if type(value) is int:
+            if value < 0:
+                raise ValueError('size must be >= 0')
+            else:
+                self.__size = value
+        else:
+            raise TypeError('size must be an integer')
