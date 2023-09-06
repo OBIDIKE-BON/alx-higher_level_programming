@@ -9,6 +9,8 @@ def add_integer(a, b=98):
         b (int or double): second number.
     Returns:
         sum of a and b.
+    Raises:
+        TypeError: If either of a or b is a non-integer and non-float.
     """
     if type(a) != int and type(a) != float:
         raise TypeError("a must be an integer")
@@ -19,17 +21,3 @@ def add_integer(a, b=98):
     if type(b) is float:
         b = int(b)
     return (a + b)
-
-
-print(add_integer(1, 2))
-print(add_integer(100, -2))
-print(add_integer(2))
-print(add_integer(100.3, -2))
-try:
-    print(add_integer(4, "School"))
-except Exception as e:
-    print(e)
-try:
-    print(add_integer(None))
-except Exception as e:
-    print(e)
