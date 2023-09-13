@@ -12,6 +12,8 @@ except:
     mList =[]
 
 for i in range(len(sys.argv)):
+    if i == 0:
+        continue
     mList.append(sys.argv[i])
 
 save_to_json_file(mList, filename)
