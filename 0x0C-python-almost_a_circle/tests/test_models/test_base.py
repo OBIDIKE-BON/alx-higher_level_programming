@@ -9,9 +9,6 @@ class TestCases(unittest.TestCase):
 
     def setUp(self):
         """sets up test before every execution"""
-
-    def test_base_id(self):
-        """testing the ids of class base instances"""
         self.b1 = Base()
         self.b2 = Base()
         self.b3 = Base(0)
@@ -19,6 +16,9 @@ class TestCases(unittest.TestCase):
         self.b5 = Base(-90)
         self.b6 = Base()
         self.b7 = Base(3)
+
+    def test_base_id(self):
+        """testing the ids of class base instances"""
         self.assertEqual(self.b1.id, 1)
         self.assertEqual(self.b2.id, 2)
         self.assertEqual(self.b3.id, 0)
