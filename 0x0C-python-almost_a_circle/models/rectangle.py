@@ -14,6 +14,11 @@ class Rectangle(Base):
         self.x = x
         self.y = y
 
+    def __str__(self):
+        """Returns the string representation of the `Rectangle` object."""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+                self.id, self.x, self.y, self.width, self.height)
+
     @property
     def width(self):
         """``width`` property."""
