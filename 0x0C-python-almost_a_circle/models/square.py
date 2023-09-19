@@ -35,4 +35,4 @@ class Square(Rectangle):
                 setattr(self, attr[i], args[i])
         else:
             for x in list(kwargs.keys()):
-                setattr(self, x, kwargs(x))
+                setattr(self, x, kwargs[x])
