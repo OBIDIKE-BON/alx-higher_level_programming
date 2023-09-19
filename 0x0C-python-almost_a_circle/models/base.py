@@ -37,7 +37,7 @@ class Base:
         with open(f"{f_name}.json", 'w') as f:
             f.write(result)
 
-    def from_json_string(json_string):
-        if json_string is None:
-            return []
-        return json.loads()
+    # def from_json_string(json_string):
+    #     if json_string is None:
+    #         return []
+    #     return json.loads()
