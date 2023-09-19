@@ -46,8 +46,7 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """creates a new object from the values in dictionary."""
-        obj = cls(3, 9)
-        if dictionary is not None:
-            obj.update(**dictionary)
+        """creates a new object from the values"""
+        obj = cls(3, 3)
+        obj.update(**dictionary)
         return obj
