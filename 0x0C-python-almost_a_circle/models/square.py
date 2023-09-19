@@ -24,3 +24,15 @@ class Square(Rectangle):
         """public ``size`` property settet"""
         self.width = size
         self.height = size
+
+    def update(self, *args, **kwargs):
+        """Updates each attribute of the class."""
+        attr = ['id', 'size', 'x', 'y']
+        lent = len(args)
+
+        if args is not None and lent != 0:
+            for i in range(lent):
+                setattr(self, attr[i], args[i])
+        else:
+            for x in list(kwargs.keys()):
+                setattr(self, x, kwargs(x))
