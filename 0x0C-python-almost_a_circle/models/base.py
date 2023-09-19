@@ -46,10 +46,12 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """creates a new object from the values in dictionary.
-        """
-        obj = cls(1, 1)
-        obj.update(**dictionary)
+        """creates a new object from the values in dictionary."""
+        if cls.__name__ == "Rectangle":
+            obj = cls(2, 6)
+        else:
+            obj = cls(2)
+        obj.update(args=None, **dictionary)
         return obj
 
     @classmethod
