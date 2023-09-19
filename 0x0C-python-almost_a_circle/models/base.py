@@ -37,7 +37,9 @@ class Base:
         with open(f"{f_name}.json", 'w') as f:
             f.write(result)
 
+    @staticmethod
     def from_json_string(json_string):
+        """returns a list from a json string"""
         if json_string is None:
             return []
-        return json.loads()
+        return json.loads(json_string)
