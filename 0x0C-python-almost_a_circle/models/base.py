@@ -56,9 +56,8 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        """Creates a new instance of the class from the contents of a file.
-        """
-        filename = "{}.json".format(cls.__name__)
+        """Creates a new instance of the class from the contents of a file."""
+        filename = f"{cls.__name__}.json"
         list_objs = []
         if not os.path.exists(filename):
             return []

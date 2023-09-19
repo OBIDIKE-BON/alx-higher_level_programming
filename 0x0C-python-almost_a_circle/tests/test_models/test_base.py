@@ -1,30 +1,46 @@
 #!/usr/bin/python3
-"""Module for all tests"""
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
+from models.square import Square
 
 
-class TestCases(unittest.TestCase):
-    """Class to hold all test fo this module"""
+class TestBaseClass(unittest.TestCase):
 
-    def setUp(self):
-        """sets up test before every execution"""
-        self.b1 = Base()
-        self.b2 = Base()
-        self.b3 = Base(0)
-        self.b4 = Base(123)
-        self.b5 = Base(-90)
-        self.b6 = Base()
-        self.b7 = Base(3)
+    def test_instance_id_values(self):
+        b1 = Base(1)
+        b2 = Base(2)
+        b4 = Base(12)
+        self.assertEqual(b1.id, 1)
+        self.assertEqual(b2.id, 2)
+        self.assertEqual(b4.id, 12)
 
-    def test_base_id(self):
-        """testing the ids of class base instances"""
-        self.assertEqual(self.b1.id, 1)
-        self.assertEqual(self.b2.id, 2)
-        self.assertEqual(self.b3.id, 0)
-        self.assertEqual(self.b4.id, 123)
-        self.assertEqual(self.b5.id, -90)
-        self.assertEqual(self.b6.id, 3)
+    def test_to_json_string(self):
+        rect = Rectangle(2, 3, 0, 0, 1)
+        rect_dict = rect.to_dictionary()
+        expected = '[{"id": 1, "width": 2, "height": 3, "x": 0, "y": 0}]'
+        self.assertEqual(Base.to_json_string([rect_dict]), expected)
+
+        sqr = Square(2, 0, 0, 1)
+        sqr_dict = sqr.to_dictionary()
+        expected = '[{"id": 1, "size": 2, "x": 0, "y": 0}]'
+        self.assertEqual(Base.to_json_string([sqr_dict]), expected)
+
+    def test_from_json_string(self):
+        json_string = '[{"id": 1, "width": 2, "height": 3, "x": 0, "y": 0}]'
+        expected = [{'id': 1, 'width': 2, 'height': 3, 'x': 0, 'y': 0}]
+        self.assertListEqual(Base.from_json_string(json_string), expected)
+
+    def test_create(self):
+         dictionary = {'id': 1, 'width': 2, 'height': 3, 'x': 0, 'y': 0}
+         rect1 = Rectangle.create(**dictionary)
+         rect2 = Rectangle.create(**dictionary)
+         expected = "[Rectangle] (1) 0/0 - 2/3"
+
+         self.assertEqual(str(rect1), expected)
+         self.assertEqual(str(rect2), expected)
+         self.assertIsNot(rect1, rect2)
+
 
 if __name__ == '__main__':
-    unittest.main
+    unittest.main()
