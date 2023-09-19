@@ -46,7 +46,62 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """creates a new object from the values"""
-        obj = cls(3, 3)
+        """creates a new object from the values in dictionary.
+        """
+        obj = cls(1, 1)
         obj.update(**dictionary)
         return obj
+
+    @classmethod
+    def load_from_file(cls):
+        """Creates a new instance of the class from the contents of a file.
+        """
+        filename = "{}.json".format(cls.__name__)
+        list_objs = []
+        if not os.path.exists(filename):
+            return []
+        else:
+            with open(filename, 'r', encoding='utf-8') as file:
+                json_string = file.read()
+            list_dictionaries = Base.from_json_string(json_string)
+            for dictionary in list_dictionaries:
+                obj = cls.create(**dictionary)
+                list_objs.append(obj)
+            return list_objs
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """saves the data of a list (Serialization) of objects to the a CSV
+        file.
+        """
+        class_name = cls.__name__
+        filename = "{}.csv".format(class_name)
+        if class_name == 'Rectangle':
+            fields = ['id', 'width', 'height', 'x', 'y']
+        elif class_name == 'Square':
+            fields = ['id', 'size', 'x', 'y']
+        with open(filename, 'w', encoding='utf-8') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=fields)
+            for obj in list_objs:
+                writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """retrieves objects from a CSV file.
+        """
+        class_name = cls.__name__
+        filename = "{}.csv".format(class_name)
+        objs = []
+        if class_name == 'Rectangle':
+            fields = ['id', 'width', 'height', 'x', 'y']
+        elif class_name == 'Square':
+            fields = ['id', 'size', 'x', 'y']
+        with open(filename, 'r', encoding='utf-8') as csv_file:
+            csv_reader = csv.DictReader(csv_file, fieldnames=fields)
+            for row in csv_reader:
+                attrs = {}
+                for key, value in row.items():
+                    attrs[key] = int(value)
+                obj = cls.create(**attrs)
+                objs.append(obj)
+        return objs
