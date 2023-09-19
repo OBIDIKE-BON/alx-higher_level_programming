@@ -138,3 +138,7 @@ class Rectangle(Base):
                         self.x = kwargs[key]
                     elif key == 'y':
                         self.y = kwargs[key]
+
+    def to_dictionary(self):
+        """returns the dictionary of this class"""
+        return self.__dict__
