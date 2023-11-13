@@ -1,6 +1,6 @@
 #!/usr/bin/node
 const args = process.argv;
-if (!isNaN(args[2])) {
+if (!(undefined === args[2])) {
   console.log(args[2]);
 } else {
   console.log('No argument');
