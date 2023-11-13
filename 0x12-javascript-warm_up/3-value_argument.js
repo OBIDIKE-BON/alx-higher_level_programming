@@ -1,7 +1,7 @@
 #!/usr/bin/node
 const args = process.argv;
-try {
+if (!isNaN(args[2])) {
   console.log(args[2]);
-} catch (err) {
+} else {
   console.log('No argument');
 }
