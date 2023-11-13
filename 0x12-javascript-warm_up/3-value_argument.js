@@ -1,8 +1,7 @@
 #!/usr/bin/node
 const args = process.argv;
-const size = args.length;
-if (size > 2) {
+try {
   console.log(args[2]);
-} else {
+} catch (err) {
   console.log('No argument');
 }
