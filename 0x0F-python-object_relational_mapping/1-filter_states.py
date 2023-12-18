@@ -8,6 +8,6 @@ import MySQLdb
 if __name__ == "__main__":
     db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
     csr = db.cursor()
-    csr.execute("SELECT * FROM `states` WHERE `name` LIKE 'N%'")
+    csr.execute("SELECT * FROM `states` WHERE `name` LIKE '%s'", "N%")
     for state in csr.fetchall():
         print(state)
