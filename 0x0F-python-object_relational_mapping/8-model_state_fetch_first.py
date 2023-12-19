@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Write a script that prints the first State object from the database.
+Inherits from SQLAlchemy Base and links to the states table.
 """
 import sys
 from sqlalchemy import create_engine
