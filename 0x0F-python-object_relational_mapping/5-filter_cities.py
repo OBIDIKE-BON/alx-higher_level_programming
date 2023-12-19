@@ -16,11 +16,4 @@ if __name__ == "__main__":
                 ORDER BY cities.id ASC
             """
     csr.execute(query, [sys.argv[4]])
-    first = True
-    for state in csr.fetchall():
-        if first:
-            print(state[1], end="")
-            first = False
-        else:
-            print(", ", (state[1]), end="")
-    print("")
+    print(", ".join([ct[1] for ct in csr.fetchall()]))
