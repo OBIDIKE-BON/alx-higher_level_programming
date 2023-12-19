@@ -23,4 +23,3 @@ if __name__ == "__main__":
             first = False
         else:
             print(", ", (state[1]), end="")
-    print()
