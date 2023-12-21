@@ -16,6 +16,6 @@ if __name__ == "__main__":
     session = Session()
 
     for state in session.query(State):
-        if "a" in state.name:
+        if state.name.count("a") == 1:
             session.delete(state)
     session.commit()
