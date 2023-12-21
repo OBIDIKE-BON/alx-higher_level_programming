@@ -4,9 +4,10 @@ Write a script that deletes all State objects with a name
 containing the letter a from the database.
 """
 import sys
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func, collate
 from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
+from relationship_city import City
+from relationship_state import State
 
 if __name__ == "__main__":
     con = "mysql+mysqldb://{}:{}@localhost/{}\
@@ -15,7 +16,5 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    a_states = session.query(State).filter(State.name.ilike('%a%')).all()
-    for state in a_states:
-        session.delete(state)
+    session.add(City(name="San Francisco", state=State(name="California")))
     session.commit()
