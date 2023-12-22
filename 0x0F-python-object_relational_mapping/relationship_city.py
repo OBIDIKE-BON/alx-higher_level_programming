@@ -7,6 +7,7 @@ from sqlalchemy import Integer, String, Column, ForeignKey
 
 Base = declarative_base()
 
+
 class City(Base):
     """
     a model class for a table `cities`.
