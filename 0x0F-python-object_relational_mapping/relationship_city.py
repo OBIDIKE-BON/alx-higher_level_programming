@@ -2,9 +2,10 @@
 """
 module for a model class for a table `cities`.
 """
-from model_state import Base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, String, Column, ForeignKey
 
+Base = declarative_base()
 
 class City(Base):
     """
@@ -17,4 +18,4 @@ class City(Base):
     __tablename__ = "cities"
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, ForeignKey("state.id"), nullable=False)
+    state_id = Column(Integer, ForeignKey("states.id"), nullable=False)
