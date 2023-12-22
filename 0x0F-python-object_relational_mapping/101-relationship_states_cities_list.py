@@ -6,8 +6,7 @@ containing the letter a from the database.
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from relationship_state import State
-from relationship_city import Base, City
+from relationship_state import Base, State, City
 
 if __name__ == "__main__":
     con = "mysql+mysqldb://{}:{}@localhost/{}\
@@ -17,5 +16,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    session.add(City(name="San Francisco", state=State(name="California")))
-    session.commit()
+    for state in session.query(State).order_by(State.id):
+        print(f"{state.id}: {state.name}")
+        for city in state.cities:
+            print(f"    {city.id}: {city.name}")
