@@ -1,12 +1,14 @@
 #!/usr/bin/node
 const request = require('request');
-request(process.argv[2], function (error, body) {
+request(process.argv[2], function (error, response, body) {
   if (!error) {
     const results = JSON.parse(body).results;
-    console.log(results.reduce((count, movie) => {
-      return movie.characters.find((character) => character.endsWith('/18/'))
-        ? count + 1
-        : count;
-    }, 0));
+    let count = 0;
+    results.forEach(function (movie) {
+      if (movie.characters.find((character) => character.endsWith('/18/'))) {
+        count++;
+      }
+    });
+    console.log(count);
   }
 });
